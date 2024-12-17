@@ -35,10 +35,10 @@ func NewServer() (*Server, error) {
 	} else {
 		return nil, err
 	}
-	if conn, err := utils.ConnectService(server.config.AuthServer); err != nil {
+	if conn, err := auth.Connect(server.config.AuthServer); err != nil {
 		return nil, err
 	} else {
-		server.auth = auth.NewAuthenticationClient(conn)
+		server.auth = conn
 	}
 	server.redis = storage.NewRedisCache(server.config.Redis, 1)
 	server.db = storage.NewMongoStorage(server.config.MongoDBConfig)
