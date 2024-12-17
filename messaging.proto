@@ -1,0 +1,134 @@
+syntax = "proto3";
+
+option go_package = "github.com/thedivinez/go-libs/services/aviator";
+
+message FlightLeaderBoard  {
+	string Name       =1;//@gotags: json:"name"
+	double Stake      =2;//@gotags: json:"stake"
+	double PayOut     =3;//@gotags: json:"payout"
+	bool CashedOut    =4;//@gotags: json:"cashedOut"
+	string Multiplier =5;//@gotags: json:"multiplier"
+}
+
+message Flight {
+	double  Risk                             =1;//@gotags: json:"risk" bson:"risk"
+	string  State                            =2;//@gotags: json:"state" bson:"state"
+	repeated FlightLeaderBoard LeaderBoard   =3;//@gotags: json:"leaderBoard" bson:"-"
+	string  ID                               =4;//@gotags: json:"id,omitempty" bson:"_id"
+	int64   TotalBets                        =5;//@gotags: json:"totalBets" bson:"totalBets"
+	double  Multiplier                       =6;//@gotags: json:"multiplier" bson:"multiplier"
+	int64   DateCreated                      =7;//@gotags: json:"dateCreated" bson:"dateCreated"
+	double  ProfitBlown                      =8;//@gotags: json:"profitBlown" bson:"profitBlown"
+	string  OrgID                            =9;//@gotags: json:"orgId,omitempty" bson:"orgId"
+}
+
+message FlightState  {
+	string  ID                              =1;//@gotags: json:"id"
+	string  State                           =2;//@gotags: json:"state"
+	string  Multiplier                      =3;//@gotags: json:"multiplier"
+	int64   TotalBets                       =4;//@gotags: json:"totalBets"
+	repeated FlightLeaderBoard LeaderBoard  =5;//@gotags: json:"leaderBoard"
+}
+
+message PlaneSettings  {
+	double  Financed            =1; //@gotags: json:"financed" bson:"financed,omitempty"
+	double  AmountToRisk        =2; //@gotags: json:"amountToRisk" bson:"amountToRisk,omitempty"
+	double  MinDemoStake        =3; //@gotags: json:"minDemoStake" bson:"minDemoStake,omitempty"
+	double  MaxDemoStake        =4; //@gotags: json:"maxDemoStake" bson:"maxDemoStake,omitempty"
+	int64   MinTotalBets        =5; //@gotags: json:"minTotalBets" bson:"minTotalBets,omitempty"
+	int64   MaxTotalBets        =6; //@gotags: json:"maxTotalBets" bson:"maxTotalBets,omitempty"
+	double  ReservedBalance     =7; //@gotags: json:"reservedBalance" bson:"reservedBalance,omitempty"
+	int64   AutoExplodeAfter    =8; //@gotags: json:"autoExplodeAfter" bson:"autoExplodeAfter,omitempty"
+	double  MinDemoRiskAmount   =9;  //@gotags: json:"minDemoRiskAmount" bson:"minDemoRiskAmount,omitempty"
+	double  MaxDemoRiskAmount   =10; //@gotags: json:"maxDemoRiskAmount" bson:"maxDemoRiskAmount,omitempty"
+	double  MinRiskPercentage   =11; //@gotags: json:"minRiskPercentage" bson:"minRiskPercentage,omitempty"
+	double  MaxRiskPercentage   =12; //@gotags: json:"maxRiskPercentage" bson:"maxRiskPercentage,omitempty"
+	double  MaxMultiplierShift  =13; //@gotags: json:"maxMultiplierShift" bson:"maxMultiplierShift,omitempty"
+	string	OrgID               =14; //@gotags: json:"orgId" bson:"orgId,omitempty"
+	int64   LisenseExpiration   =15; //@gotags: json:"licenseExpiry" bson:"licenseExpiry,omitempty"
+}
+
+message PlaneBet  {
+	string  BetId        =1; //@gotags: json:"id" bson:"_id"
+	string  Side         =2; //@gotags: json:"side" bson:"side"
+	double  Payout       =3; //@gotags: json:"payout" bson:"payout"
+	string  OrgID        =4; //@gotags: json:"orgId" bson:"orgId,omitempty"
+	double  Stake        =5; //@gotags: json:"stake" bson:"stake,omitempty"
+	string  UserID       =6; //@gotags: json:"userId" bson:"userId,omitempty"
+	string  Status       =7; //@gotags: json:"status" bson:"status,omitempty"
+	string  Account      =8; //@gotags: json:"account" bson:"account,omitempty"
+	string  FlightID     =9; //@gotags: json:"flightId" bson:"flightId,omitempty"
+	int64   DateCreated  =10; //@gotags: json:"dateCreated" bson:"dateCreated,omitempty"
+}
+
+message PlaneCashoutResponse {
+    string Message =1; // @gotags: json:"message"
+}
+
+message CancelPlaneBetResponse {
+    string Message =1; // @gotags: json:"message"
+}
+
+message PlacePlaneBetResponse {
+    string Message =1;  // @gotags: json:"message"
+	PlaneBet Bet =2; // @gotags: json:"bets"
+}
+
+message GetPlaneBetsRequest {
+    string UserID =1; //@gotags: json:"userId"
+	string Page =2; //@gotags: json:"page"
+	int64 	Limit =3; //@gotags: json:"limit"
+}
+
+message GetPlaneBetsResponse {
+    repeated PlaneBet Bets =1; //@gotags: json:"bets"
+}
+
+message GetPlaneHistoryResponse {
+    repeated string History =1; //@gotags: json:"history"
+}
+
+message SubscribeRequest {
+	string OrgID =1; //@gotags: json:"orgId"
+	string Package =2; //@gotags: json:"package"
+	int64 Duration =3; //@gotags: json:"duration"
+}
+
+message SubscribeResponse {
+	string Message =1; //@gotags: json:"message"
+	PlaneSettings Settings =2; //@gotags: json:"settings"
+}
+
+message GetPlaneSettingsRequest {
+	string OrgID =1; //@gotags: json:"orgId"
+}
+
+message UpdatePlaneSettingsResponse {
+	string Message =1; //@gotags: json:"message"
+	PlaneSettings Settings =2; //@gotags: json:"settings"
+}
+
+message GetActiveBetsRequest {
+	string UserID =1; //@gotags: json:"userId"
+	string OrgID =2; //@gotags: json:"orgId"
+}
+
+message GetActiveBetsResponse{
+	repeated PlaneBet Bets =1; //@gotags: json:"bets"
+}
+
+message GetPlaneHistoryRequest {
+	string OrgID =1; //@gotags: json:"orgId"
+}
+
+service Aviator {
+	rpc PlaneCashout(PlaneBet) returns (PlaneCashoutResponse);
+    rpc PlacePlaneBet(PlaneBet) returns (PlacePlaneBetResponse);
+	rpc Subscribe(SubscribeRequest) returns (SubscribeResponse);
+    rpc CancelPlaneBet(PlaneBet) returns (CancelPlaneBetResponse);
+    rpc GetPlaneBets(GetPlaneBetsRequest) returns (GetPlaneBetsResponse);
+	rpc GetPlaneSettings(GetPlaneSettingsRequest) returns (PlaneSettings);
+	rpc GetActiveBets(GetActiveBetsRequest)returns (GetActiveBetsResponse);
+    rpc GetPlaneHistory(GetPlaneHistoryRequest) returns(GetPlaneHistoryResponse);
+	rpc UpdatePlaneSettings(PlaneSettings) returns (UpdatePlaneSettingsResponse);
+}
