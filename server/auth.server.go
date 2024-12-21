@@ -1,19 +1,14 @@
 package server
 
 import (
-	"fmt"
-	"log"
-	"net"
-
 	"github.com/thedivinez/go-libs/messaging"
+	"github.com/thedivinez/go-libs/services"
 	"github.com/thedivinez/go-libs/services/auth"
 	"github.com/thedivinez/go-libs/services/aviator"
 	"github.com/thedivinez/go-libs/storage"
 	"github.com/thedivinez/go-libs/utils"
 	"github.com/thedivinez/grandaviator/types"
 	"go.mongodb.org/mongo-driver/bson"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/reflection"
 )
 
 type Server struct {
@@ -53,13 +48,10 @@ func NewServer() (*Server, error) {
 }
 
 func (server *Server) Start() error {
-	if listener, err := net.Listen("tcp", fmt.Sprintf(":%s", server.config.Port)); err != nil {
+	if service, err := services.NewService(server.config.Port); err != nil {
 		return err
 	} else {
-		log.Printf("starting service on port:%s", server.config.Port)
-		srv := grpc.NewServer(grpc.UnaryInterceptor(utils.OutgoingInterceptor))
-		aviator.RegisterAviatorServer(srv, server)
-		reflection.Register(srv)
-		return srv.Serve(listener)
+		aviator.RegisterAviatorServer(service.Server, server)
+		return service.Start()
 	}
 }
