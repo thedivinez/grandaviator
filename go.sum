@@ -55,6 +55,10 @@ github.com/thedivinez/go-libs v0.1.44 h1:X/N5z2wzosCkQbJvDBa0wwFE3v02dH5o2xiD21a
 github.com/thedivinez/go-libs v0.1.44/go.mod h1:NFH8OQQr6UjjkPQcnatRI4EeDpwXuhPZgiBLuU8yzYI=
 github.com/thedivinez/go-libs v0.1.45 h1:LRx/yn3w96puuuCfle4BRbZ3ipppXx3PLc+H08sZGbQ=
 github.com/thedivinez/go-libs v0.1.45/go.mod h1:NFH8OQQr6UjjkPQcnatRI4EeDpwXuhPZgiBLuU8yzYI=
+github.com/thedivinez/go-libs v0.1.46 h1:Q8egYqYv4XHMtWQHCxyq+5QV7h8AgUr1J6/ORH/vdvk=
+github.com/thedivinez/go-libs v0.1.46/go.mod h1:NFH8OQQr6UjjkPQcnatRI4EeDpwXuhPZgiBLuU8yzYI=
+github.com/thedivinez/go-libs v0.1.47 h1:RIBBBWuvZ2/YpMwcRkEyzRUWV+VoZxtYOSKh3yOI2eY=
+github.com/thedivinez/go-libs v0.1.47/go.mod h1:NFH8OQQr6UjjkPQcnatRI4EeDpwXuhPZgiBLuU8yzYI=
 github.com/xdg-go/pbkdf2 v1.0.0 h1:Su7DPu48wXMwC3bs7MCNG+z4FhcyEuz5dlvchbq0B0c=
 github.com/xdg-go/pbkdf2 v1.0.0/go.mod h1:jrpuAogTd400dnrH08LKmI/xc1MbPOebTwRqcT5RDeI=
 github.com/xdg-go/scram v1.1.2 h1:FHX5I5B4i4hKRVRBCFRxq1iQRej7WO3hhBuJf+UUySY=

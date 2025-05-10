@@ -6,7 +6,7 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/pkg/errors v0.9.1
 	github.com/redis/go-redis/v9 v9.7.0
-	github.com/thedivinez/go-libs v0.1.45
+	github.com/thedivinez/go-libs v0.1.47
 	go.mongodb.org/mongo-driver v1.17.1
 	google.golang.org/grpc v1.68.0
 )
